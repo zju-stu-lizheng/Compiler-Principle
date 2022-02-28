@@ -37,9 +37,12 @@ exp: exp '+' term {$$ = $1+$3;}
 | exp '-' term {$$ = $1-$3;}
 | term {$$ = $1;}
 
-term: NUMBER {
-    $$ = $1;
-}
+term: term '*' num {$$ = $1*$3;}
+| term '/' num {$$ = $1/$3;}
+| num {$$ = $1;}
+
+num: NUMBER {$$ = $1;}
+| '(' exp ')' {$$ = $2;}
 
 
 %%
