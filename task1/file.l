@@ -6,8 +6,8 @@ int numChars = 0, numWords = 0, numLines = 0;
 WORD ([a-zA-Z0-9]+)
 
 %%
-\n                { numLines++;}
-{WORD}        { numWords++; numChars += yyleng; printf("%s\n",yytext); }
+\n      { numLines++;}
+{WORD}  { numWords++; numChars += yyleng; printf("%s\n",yytext); }
 .       {}
 %%
 
