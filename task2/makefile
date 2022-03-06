@@ -1,8 +1,8 @@
-run: w-s
-    ./w-s ./hello.c
+run: upper
+	./upper hello.c
 
-w-s: lex.yy.c
-    gcc -o $@ $<
+upper: lex.yy.c
+	gcc -o $@ $^
 
 lex.yy.c: upper.l
-    flex $<
+	flex $<

@@ -1,6 +1,5 @@
 %{
 #include <ctype.h>
-int numChars = 0, numWords = 0, numLines = 0;
 %}
 %option noyywrap
 
@@ -8,12 +7,14 @@ COMMENT "/*"([^*]"/"|"*"[^/]|[^"*""/"])*"*"*"*/"
 
 COMMENT2 "//"[^\n]*
 
-KEY [^a-zA-Z](auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|restrict|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)[^a-zA-Z]
+KEY (auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|restrict|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)
 
-WORD ([a-zA-Z]+)
+WORD ({KEY}[^ \n\r\t]+)|([^ \n\r\t]+{KEY})
+
 %%
 {COMMENT}   {printf("%s", yytext);}
 {COMMENT2}  {printf("%s", yytext);}
+{WORD}      {printf("%s", yytext);}
 {KEY}        { 
         for (size_t i = 0; i < yyleng; ++i) {
             if (islower(yytext[i])) {
