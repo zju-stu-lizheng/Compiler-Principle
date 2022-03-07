@@ -1,6 +1,11 @@
 run: cal
 	./cal
 
+.PHONY : run test
+
+test: cal
+	./cal < test
+
 cal: lex.yy.c y.tab.c
 	gcc -o $@ $^
 
