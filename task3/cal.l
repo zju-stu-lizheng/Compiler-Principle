@@ -20,6 +20,10 @@
     return yytext[0];       /* <\n> */
 }
 
+<<EOF>> {
+    return 0;
+}
+
 . {}
 
 %%

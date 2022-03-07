@@ -16,8 +16,8 @@ void yyerror(const char *s)
 
 int main()
 {
-        yyparse();
-        return 0;
+    yyparse();
+    return 0;
 }
 %}
 
