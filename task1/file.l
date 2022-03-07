@@ -7,10 +7,16 @@ WORD ([a-zA-Z0-9]+)
 STRING ([^ \t\n\r]+)
 
 %%
+<<<<<<< HEAD
 \n            { numLines++;}
 {WORD}        { numWords++; numChars += yyleng; printf("%s\n",yytext); }
 {STRING}      { numChars += 1; }
 .             {}
+=======
+\n      { numLines++;}
+{WORD}  { numWords++; numChars += yyleng; printf("%s\n",yytext); }
+.       {}
+>>>>>>> 47e9d1f757ed2bc9e1609088c4139acba9d245de
 %%
 
 extern FILE* yyin;

@@ -7,7 +7,7 @@ COMMENT		"/*"([^*]|"*"[^"*""/"])*"*"*"*/"
 COMMENT2    "//"[^\n]*
 STRING      \"([^\"])*\"
 KEY         (auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|restrict|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)
-WORD        ({KEY}[^ \n\r\t]+)|([^ \n\r\t]+{KEY})
+WORD        ({KEY}[a-zA-Z0-9_]+)|([a-zA-Z0-9_]+{KEY})
 NOT_KEY     {COMMENT}|{COMMENT2}|{STRING}|{WORD}
 
 %%
@@ -35,5 +35,5 @@ int main(int argc,char**argv) {
         /*do the lex*/
         yylex();
     }
-        return 0;
+    return 0;
 }
