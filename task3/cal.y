@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 //在lex.yy.c里定义，会被yyparse()调用。在此声明消除编译和链接错误。
 extern int yylex(void); 
@@ -43,6 +44,7 @@ term: term '*' num {$$ = $1*$3;}
 
 num: NUMBER {$$ = $1;}
 | '(' exp ')' {$$ = $2;}
+| num '^' num {$$ = pow($1,$3);}
 
 
 %%

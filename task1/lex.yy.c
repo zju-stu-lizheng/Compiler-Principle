@@ -365,7 +365,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[11] =
     {   0,
-        0,    0,    6,    3,    4,    1,    2,    3,    2,    0
+        0,    0,    6,    3,    4,    2,    1,    3,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -724,15 +724,15 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
 YY_RULE_SETUP
 #line 10 "file.l"
-{ numLines++;}
+{ numWords++; numChars += yyleng;  }
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
 #line 11 "file.l"
-{ numWords++; numChars += yyleng; printf("%s\n",yytext); }
+{ numLines++;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -1774,3 +1774,4 @@ int main(int argc,char**argv) {
     printf("%d\t%d\t%d\n", numChars, numWords, numLines);
     return 0;
 }
+

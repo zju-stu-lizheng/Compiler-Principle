@@ -45,7 +45,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 26 "cal.y"
+#line 28 "cal.y"
 
 typedef enum {
     TYPE_INTEGER,

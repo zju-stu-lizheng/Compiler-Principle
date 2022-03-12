@@ -7,8 +7,8 @@ WORD ([a-zA-Z0-9]+)
 STRING ([^ \t\n\r]+)
 
 %%
+{WORD}        { numWords++; numChars += yyleng;  }
 \n            { numLines++;}
-{WORD}        { numWords++; numChars += yyleng; printf("%s\n",yytext); }
 {STRING}      { numChars += 1; }
 .             { }
 %%

@@ -1,6 +1,8 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
+
 
 //在lex.yy.c里定义，会被yyparse()调用。在此声明消除编译和链接错误。
 extern int yylex(void); 
@@ -154,6 +156,21 @@ num: NUMBER {
     }else{
         $$.value_type = TYPE_FLOAT;
         $$.value.fv = $2.value.fv;
+    }
+}
+| num '^' num {
+    if($1.value_type == TYPE_INTEGER && $3.value_type == TYPE_INTEGER){
+        $$.value_type = TYPE_INTEGER;
+        $$.value.iv = pow($1.value.iv,$3.value.iv);
+    }else if($1.value_type == TYPE_INTEGER && $3.value_type == TYPE_FLOAT){
+        $$.value_type = TYPE_FLOAT;
+        $$.value.fv = pow($1.value.iv,$3.value.fv);
+    }else if($1.value_type == TYPE_FLOAT && $3.value_type == TYPE_INTEGER){
+        $$.value_type = TYPE_FLOAT;
+        $$.value.fv = pow($1.value.fv,$3.value.iv);
+    }else{
+        $$.value_type = TYPE_FLOAT;
+        $$.value.fv = pow($1.value.fv,$3.value.fv);
     }
 }
 

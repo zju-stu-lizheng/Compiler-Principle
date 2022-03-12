@@ -7,7 +7,7 @@ test: cal
 	./cal < test
 
 cal: lex.yy.c y.tab.c
-	gcc -o $@ $^
+	gcc -o $@ $^ -lm
 
 y.tab.c: cal.y
 	yacc -d -Wyacc $<
